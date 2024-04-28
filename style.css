@@ -1,0 +1,200 @@
+html,
+body {
+    box-sizing: border-box;
+    background-color: #000;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* <uniquifier>: Use a unique and descriptive class name
+<weight>: Use a value from 100 to 900 */
+
+html {
+    scroll-snap-type: y mandatory;
+}
+
+.archivo-black-regular {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+header {
+    width: 100%;
+    position: fixed;
+    height: 100px;
+    padding: 0 20px;
+    background-color: rgb(104, 10, 10);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+/* {
+    -webkit-text-stroke: 0.05em #000;
+} */
+
+header h1 {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2rem;
+}
+
+main {
+    padding-top: 120px;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Noto Sans KR", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    margin-top: 50px;
+}
+
+.search > label {
+    font-size: 1.5rem;
+}
+
+/* input 기본 스타일 초기화 */
+#search-input {
+    all: unset;
+    border-bottom: #fff 2px solid;
+    height: 30px;
+    margin: 5px 10px;
+    padding-left: 5px;
+}
+
+#search-input::-webkit-input-placeholder {
+    color: #afafaf;
+    font-weight: 200;
+}
+
+#search-btn {
+    all: unset;
+    width: 40px;
+    height: 30px;
+    padding: 1px 2px;
+}
+
+/* 필터 버튼 */
+.filltering-btns {
+    display: flex;
+    flex-direction: column;
+    margin: 30px auto;
+}
+
+.filltering_row1, .filltering-row2 {
+    display: flex;
+    justify-content: center;
+}
+
+.filltering-btn {
+    border: 1px solid #fff;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin: 10px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.filltering-btn:hover {
+    border: 1px solid #000;
+    border-radius: 20px;
+    background-color: #fff;
+    color: #000;
+}
+
+/* 카드 리스트 */
+.card-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.movie-card {
+    width: 300px;
+    border: solid 2px #fff;
+    margin: 1rem;
+    cursor: pointer;
+}
+
+.movie-card>div {
+    width: 300px;
+}
+
+.movie-card>div {}
+
+.movie-title,
+.review {
+    display: flex;
+}
+
+.movie-title-head,
+.review-head,
+.movie-title-body,
+.review-body {
+    border: solid 2px #fff;
+}
+
+.movie-title-head {
+    width: 100px;
+    height: 60px;
+    margin: -2px -2px 0 -2px;
+}
+
+.review-head {
+    width: 100px;
+    height: 60px;
+    margin: -2px 0 -2px -2px;
+}
+
+.movie-title-body {
+    width: 202px;
+    height: 60px;
+    margin: -2px -2px 0 0;
+}
+
+.review-body {
+    width: 202px;
+    height: 60px;
+    margin: -2px -2px -2px -2px;
+}
+
+.card-content {
+    border: solid 2px #fff;
+    margin: -2px -2px;
+}
+
+.card-content>p {
+    margin-top: 0.5rem;
+    line-height: 1.3rem;
+}
+
+.movie-title-head>h3, .review-head>h3, .card-content>h3 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 20px 8px;
+}
+
+.movie-title-body>p, .review-body>p, .card-content>p {
+    margin: 24px 8px;
+}
+
+img {
+    width: 280px;
+    margin: 10px;
+}
