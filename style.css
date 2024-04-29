@@ -121,8 +121,12 @@ main {
 .card-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    justify-content: center;
+    justify-items: center;
     margin-top: 50px;
+    /* 가운데 정렬 */
+    margin: 0 auto;
+    max-width: 1200px;
+    min-width: 600px;
 }
 
 .movie-card {

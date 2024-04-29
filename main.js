@@ -11,16 +11,21 @@ const options = {
 //     .then(response => console.log(response))
 //     .catch(err => console.error(err));
 
+const movies = []; // API에서 가져온 데이터를 넣어 사용할 변수를 위해 빈 배열 생성
+const cardList = document.querySelector('.card-list'); // 카드 리스트 접근
+
 fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        
+
         // API(TMDB open API) 영화 데이터 가져오기
         let row = data.results; // 받아온 데이터 배열로 변수에 저장
+        console.log(row);
 
-        const cardList = document.querySelector('.card-list'); // 카드 요소
-        cardList.innerHTML = ''; // 카드 넣을 요소에 빈 자리 넣어주기
+        movies.push(...row); // 빈 배열에 row에 있는 영화 데이터 넣기 + 배열 안에 배열로 들어가있어서 스프레드
+
+        cardList.innerHTML = ''; // 카드 리스트에 빈 자리 넣어주기
 
         row.forEach((card) => {
             let id = card['id'];
@@ -54,50 +59,60 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
                             ${overview}
                         </p>
                     </div>
-                </div>`;
+                </div>`; // 카드 리스트에 들어갈 코드 내용
 
-            cardList.insertAdjacentHTML('beforeend', temp_html);
+            cardList.insertAdjacentHTML('beforeend', temp_html); // 카드 리스트 안에 코드 넣기
         });
-
     });
-
-
+    
+console.log(movies);
 // 카드 클릭 시 alert(영화id) 띄우기
-document.addEventListener('DOMContentLoaded', () => {
+// 1. 카드 리스트에 접근해서 각 카드들 배열로 변수에 저장
+const movieCards = document.querySelectorAll('.movie-card');
+// console.log(movieCards);
 
-    // 1. 카드 리스트에 접근해서 각 카드들 배열로 변수에 저장
-    const movieCards = document.querySelectorAll('.movie-card');
-    // console.log(movieCards);
-
-    // 2. 각 영화 카드에 실행될 이벤트리스너 클릭 기능 추가
-    movieCards.forEach((card) => {
-        card.addEventListener('click', () => {
-            // 3. 이벤트리스너에 클릭한 카드의 id값을 가져와서 alert으로 띄워주는 함수 넣기
-            alert(`movie id: ${card.id}`);
-        });
+// 2. 각 영화 카드에 실행될 이벤트리스너 클릭 기능 추가
+movieCards.forEach((card) => {
+    card.addEventListener('click', () => {
+        // 3. 이벤트리스너에 클릭한 카드의 id값을 가져와서 alert으로 띄워주는 함수 넣기
+        alert(`movie id: ${card.id}`);
     });
 });
 
 
-
 // 영화 제목 검색 구현하기 (hint: filter 또는 display: none)
 
-// 1. 영화 제목 데이터를 배열로 변수에 저장
+// 1. 영화 데이터를 배열로 변수에 저장
+// const movieCards = document.querySelectorAll('.movie-card');
+
 // 2. 검색 버튼에 실행될 이벤트리스너 클릭 기능 추가
-// 3. 검색 창에 텍스트 입력 시 배열의 요소 중 해당 텍스트에 일치하는 카드만 보일 수 있도록
-// 4. input값 받기 (대소문자 구분 없도록)
-const searchInput = document.getElementById("searchInput").value;
-// 5-1. 검색하는 함수
-// 5-1-1. 
-// 5-1-2. input과 영화 제목 데이터가 들어있는 배열 중 true인 것들만 추출하여 새로운 배열로 생성
-// 6-2. 결과를 출력하는 함수
-// 6-2-1. css 요소 접근해야할 듯 -> 아직 뭘 접근해서 바꿀지는 잘 모르겠음
+const searchBtn = document.getElementById("search-btn");
 
-function searchMovie() {
-    // 입력 상자에서 입력된 영화 제목 가져오기
+searchBtn.addEventListener('click', (e) => { // 클릭 이벤트 발생 시 정보들이 e에 담겨옴
+    e.preventDefault();
 
-    // 입력된 제목이 포함된 영화 필터링
-    const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchInput.toLowerCase()));
-    // 필터링된 영화 출력
-    displayMovies(filteredMovies);
-}
+    // 3. 검색 창에 접근
+    const searchInput = document.getElementById("search-input");
+
+    // 4. 검색 창에 텍스트 입력 시 배열의 요소 중 일치하는 카드만 보일 수 있도록 input값 받기 (대소문자 구분, 공백 없도록)
+    const keyword = searchInput.value.trim().toUpperCase();
+
+    // 5-1. 검색하는 함수
+    const filteredMovies = movies.filter(movie => {
+        // 5-1-1. 영화 제목 데이터 찾아오기 (대소문자 구분, 공백 없도록)
+        // 5-1-2. input과 영화 제목 데이터가 들어있는 배열 중 true인 것들만 추출하여 새로운 배열로 생성
+        return movie.title.trim().toUpperCase().includes(keyword);
+    });
+    console.log(filteredMovies);
+
+    // 6-2. 결과 출력하는 함수
+
+    // 6-1-1. 영화 카드를 담을 컨테이너 요소에 접근
+    document.getElementById("cardList");
+
+    // 6-1-2. 해당 요소에 이전에 이미 출력된 결과 지우기
+    cardList.innerHTML = '';
+
+    // 6-2-3. 해당 요소에는 5-1에서 찾은 영화 카드 데이터 배열로만 채워넣기
+    cardList.insertAdjacentHTML('beforeend', filteredMovies);
+});
