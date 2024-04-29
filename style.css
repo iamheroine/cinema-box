@@ -40,15 +40,20 @@ header {
     -webkit-text-stroke: 0.05em #000;
 } */
 
-header h1 {
+.header-logo>a {
     font-family: "Archivo Black", sans-serif;
     font-weight: 400;
+    font-size: 5rem;
     font-style: normal;
     font-size: 2rem;
+    text-decoration: none;
+    color: #fff;
 }
 
 main {
+    background-color: #202020;
     padding-top: 120px;
+    height: 400px;
 }
 
 .search {
@@ -70,6 +75,7 @@ main {
 #search-input {
     all: unset;
     border-bottom: #fff 2px solid;
+    width: 250px;
     height: 30px;
     margin: 5px 10px;
     padding-left: 5px;
@@ -78,13 +84,15 @@ main {
 #search-input::-webkit-input-placeholder {
     color: #afafaf;
     font-weight: 200;
+    font-size: 1.2rem;
+    text-align: center;
 }
 
 #search-btn {
     all: unset;
-    width: 40px;
-    height: 30px;
-    padding: 1px 2px;
+    padding: 0;
+    text-align: center;
+    font-size: 1.8rem;
 }
 
 /* 필터 버튼 */
@@ -180,6 +188,7 @@ main {
 
 .card-content {
     border: solid 2px #fff;
+    border-bottom: none;
     margin: -2px -2px;
 }
 
