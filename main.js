@@ -49,7 +49,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
                                 <p>${average}</p>
                             </div>
                         </div>
-                        <img src="https://image.tmdb.org/t/p/w500${image}" alt="...">
+                        <img src="https://image.tmdb.org/t/p/w500${image}" alt="..." class="card-img">
                         <div class="card-content">
                             <h3>more</h3>
                             <p>
@@ -113,3 +113,19 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
             showCards(filteredMovies);
         });
     });
+
+    // 검색 시 엔터 키 사용
+    const onSubmitSearch = (e) => {
+        if (e.key === "Enter") {
+          //키를 눌렀을 때 동작할 코드
+        };
+    };
+
+    // 영화 상세 설명 토글
+    function openSetting(){
+        if(document.getElementsByClassName("card-content").style.display==='block'){
+            document.getElementsByClassName("card-content").style.display='none';
+        }else{
+            document.getElementsByClassName("card-content").style.display='block';
+        };
+    };

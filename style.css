@@ -29,7 +29,8 @@ header {
     position: fixed;
     height: 100px;
     padding: 0 20px;
-    background-color: rgb(104, 10, 10);
+    background-color: #000;
+    border-bottom: #fff solid 2px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -52,8 +53,12 @@ header {
 
 main {
     background-color: #202020;
-    padding-top: 120px;
     height: 400px;
+}
+
+main > img {
+    width: 100%;
+    margin: 0 auto;
 }
 
 .search {
@@ -207,7 +212,7 @@ main {
     margin: 24px 8px;
 }
 
-img {
+.card-img {
     width: 280px;
     margin: 10px;
 }
